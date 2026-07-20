@@ -1,8 +1,8 @@
 :root {
-  --color-pblue: #0d52a1;
-  --color-pbg: #f7f2e7;
+  --color-pblue: #0f52a0;
+  --color-pbg: #f9f6f1;
   --color-ptext: #1a1a1a;
-  --color-pborder: #e2d9c4;
+  --color-pborder: #ddd6c8;
 }
 
 * {
@@ -24,12 +24,4 @@ body {
 a {
   color: var(--color-pblue);
   text-decoration: none;
-}
-
-.card {
-  background: #fff;
-  border: 1px solid var(--color-pborder);
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 2px 12px rgba(13, 82, 161, 0.08);
 }

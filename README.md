@@ -1,8 +1,6 @@
-# radar-perpetuo
+# Perpetuo — gifted-subscription landing page
 
-## `/regalo` — gifted-subscription landing page
-
-`/regalo` is a public, branded landing page (no radar chrome) for recipients of a
+This app is a single page: a public, branded landing at `/` for recipients of a
 gifted Perpetuo subscription. They enter their email, the form POSTs to
 `/api/regalo`, which validates the input and forwards it to an n8n webhook.
 Tomás activates the subscription manually from there — this repo does not store
@@ -26,5 +24,5 @@ Set `GIFT_WEBHOOK_URL` (see `.env.example`) to the n8n webhook URL, both locally
 }
 ```
 
-Build the n8n workflow (Webhook trigger → Data Table row → Slack notification)
-against this shape.
+The n8n workflow (Webhook trigger → Data Table row → Slack notification) is
+built against this shape.

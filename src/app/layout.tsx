@@ -9,8 +9,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Radar Perpetuo",
-  description: "Panel interno de Perpetuo",
+  title: "Perpetuo — Tu suscripción de regalo",
+  description:
+    "Deja tu correo para recibir tu suscripción de regalo a Perpetuo, la revista en español del siglo XXI.",
 };
 
 export default function RootLayout({
