@@ -1,0 +1,35 @@
+:root {
+  --color-pblue: #0d52a1;
+  --color-pbg: #f7f2e7;
+  --color-ptext: #1a1a1a;
+  --color-pborder: #e2d9c4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: var(--color-pbg);
+  color: var(--color-ptext);
+  font-family: var(--font-poppins), "Poppins", system-ui, sans-serif;
+}
+
+a {
+  color: var(--color-pblue);
+  text-decoration: none;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--color-pborder);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 12px rgba(13, 82, 161, 0.08);
+}
