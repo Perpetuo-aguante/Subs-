@@ -26,14 +26,14 @@ export async function POST(request: Request) {
   const normalizedEmail = typeof email === "string" ? email.trim().toLowerCase() : "";
 
   if (!EMAIL_REGEX.test(normalizedEmail)) {
-    return NextResponse.json({ ok: false, error: "Ingresá un correo válido" }, { status: 400 });
+    return NextResponse.json({ ok: false, error: "Ingresa un correo válido" }, { status: 400 });
   }
 
   const webhookUrl = process.env.GIFT_WEBHOOK_URL;
 
   if (!webhookUrl) {
     return NextResponse.json(
-      { ok: false, error: "No pudimos procesar tu solicitud. Probá de nuevo más tarde." },
+      { ok: false, error: "No pudimos procesar tu solicitud. Inténtalo de nuevo más tarde." },
       { status: 500 }
     );
   }
@@ -59,13 +59,13 @@ export async function POST(request: Request) {
 
     if (!webhookResponse.ok) {
       return NextResponse.json(
-        { ok: false, error: "No pudimos procesar tu solicitud. Probá de nuevo más tarde." },
+        { ok: false, error: "No pudimos procesar tu solicitud. Inténtalo de nuevo más tarde." },
         { status: 502 }
       );
     }
   } catch {
     return NextResponse.json(
-      { ok: false, error: "No pudimos procesar tu solicitud. Probá de nuevo más tarde." },
+      { ok: false, error: "No pudimos procesar tu solicitud. Inténtalo de nuevo más tarde." },
       { status: 502 }
     );
   }

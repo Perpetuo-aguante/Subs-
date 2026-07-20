@@ -27,14 +27,14 @@ export function GiftForm({ initialEmail }: { initialEmail: string }) {
       const data = await response.json().catch(() => null);
 
       if (!response.ok || !data?.ok) {
-        setErrorMessage(data?.error ?? "Algo salió mal. Probá de nuevo en un momento.");
+        setErrorMessage(data?.error ?? "Algo salió mal. Inténtalo de nuevo en un momento.");
         setStatus("error");
         return;
       }
 
       setStatus("success");
     } catch {
-      setErrorMessage("No pudimos conectarnos. Probá de nuevo en un momento.");
+      setErrorMessage("No pudimos conectarnos. Inténtalo de nuevo en un momento.");
       setStatus("error");
     }
   }
