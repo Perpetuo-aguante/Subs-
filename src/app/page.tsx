@@ -12,46 +12,6 @@ const HEADLINE_ACCENT = "se lea y se piense en español.";
 
 const ROTATING = ["crónicas", "ensayos", "perfiles", "entrevistas", "adelantos"];
 
-/** Published pieces, shown so the page argues with real work rather than adjectives. */
-const PIECES = [
-  {
-    kind: "Crónica",
-    title: "Una ciudad sobre basura",
-    sub: "Fracasos, lecciones y reflexiones desde Santa Fe, CDMX",
-    by: "Renata Álvarez León",
-  },
-  {
-    kind: "Crónica",
-    title: "El hedor de la impunidad",
-    sub: "Cómo funciona el huachicol",
-    by: "Pedro Alonso Benítez",
-  },
-  {
-    kind: "Ensayo",
-    title: "Dos formas de narrar la violencia",
-    sub: "Sobre el rap bélico, los narcocorridos y por qué los tratamos distinto",
-    by: "Dahlia de la Cerda",
-  },
-  {
-    kind: "Crónica",
-    title: "La gota que derramó el vaso",
-    sub: "Cómo Ayotzinapa se hizo un movimiento",
-    by: "Sofía Ackerman",
-  },
-  {
-    kind: "Ensayo",
-    title: "Buscando a La Michoacana",
-    sub: "Sobre paleterías, misterios y lo mexicano",
-    by: "Silvia Dichi Atri",
-  },
-  {
-    kind: "Crónica",
-    title: "El alma indómita de las Islas de la Bahía",
-    sub: "Sobre las costumbres y la batalla por conservarlas",
-    by: "Jericca Warren",
-  },
-];
-
 /** Splits a phrase into per-word spans so the hero headline can rise into place. */
 function Words({
   text,
@@ -146,31 +106,6 @@ export default async function GiftLandingPage({
                 </p>
                 <p className="pull__by">Perpetuo</p>
               </Reveal>
-            </div>
-          </section>
-
-          <section className="section">
-            <div className="shell">
-              <Reveal className="section__head">
-                <p className="eyebrow">Lo que vas a leer</p>
-                <h2 className="section__title">Reportería larga, ensayo y crónica en español.</h2>
-              </Reveal>
-
-              <ul className="cards">
-                {PIECES.map((piece, index) => (
-                  <Reveal
-                    as="li"
-                    key={piece.title}
-                    className="card"
-                    delay={Math.min(index, 3) * 70}
-                  >
-                    <p className="card__kind">{piece.kind}</p>
-                    <h3 className="card__title">{piece.title}</h3>
-                    <p className="card__sub">{piece.sub}</p>
-                    <p className="card__by">{piece.by}</p>
-                  </Reveal>
-                ))}
-              </ul>
             </div>
           </section>
 

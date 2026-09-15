@@ -27,9 +27,6 @@ The page is deliberately not static:
 Every animation has a `prefers-reduced-motion` path that keeps the finished
 state and drops the movement; the canvas renders a single static frame.
 
-The six pieces listed under *Lo que vas a leer* are real published titles, hard
-coded in the `PIECES` array in `src/app/page.tsx`. Edit them there.
-
 ### Env var
 
 Set `GIFT_WEBHOOK_URL` (see `.env.example`) to the n8n webhook URL, both locally
