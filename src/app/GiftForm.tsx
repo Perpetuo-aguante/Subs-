@@ -39,63 +39,85 @@ export function GiftForm({ initialEmail }: { initialEmail: string }) {
     }
   }
 
+  /** Feeds the pointer position to the button's sheen gradient. */
+  function trackPointer(event: React.PointerEvent<HTMLButtonElement>) {
+    const rect = event.currentTarget.getBoundingClientRect();
+    event.currentTarget.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+    event.currentTarget.style.setProperty("--my", `${event.clientY - rect.top}px`);
+  }
+
   if (status === "success") {
     return (
-      <p role="status">
-        Listo — recibimos tu correo. Activaremos tu suscripción y te avisaremos ahí mismo.
-      </p>
+      <div className="done" role="status">
+        <span className="done__check" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M4 12.5 9.5 18 20 7" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </span>
+        <h2 className="signup__title done__title">Listo, recibimos tu correo.</h2>
+        <p className="done__text">
+          Activamos tu suscripción y te avisamos a <strong>{email}</strong>. Nos vemos en el
+          próximo envío.
+        </p>
+      </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div style={{ position: "absolute", left: "-9999px", top: "-9999px" }} aria-hidden="true">
-        <label htmlFor="website">Sitio web</label>
-        <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" />
-      </div>
+    <>
+      <p className="eyebrow">Tu regalo</p>
+      <h2 className="signup__title">Activa tu suscripción</h2>
+      <p className="signup__note">
+        Deja el correo donde quieres recibir Perpetuo. Activamos la suscripción a mano y te
+        avisamos ahí mismo.
+      </p>
 
-      <label htmlFor="email">Correo electrónico</label>
-      <input
-        id="email"
-        name="email"
-        type="email"
-        required
-        placeholder="tu@correo.com"
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
-        disabled={status === "loading"}
-        style={{
-          display: "block",
-          width: "100%",
-          margin: "0.5rem 0 1rem",
-          padding: "0.75rem",
-          borderRadius: "8px",
-          border: "1px solid var(--color-pborder)",
-        }}
-      />
+      <form className="form" onSubmit={handleSubmit} noValidate>
+        <div className="hp" aria-hidden="true">
+          <label htmlFor="website">Sitio web</label>
+          <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" />
+        </div>
 
-      <button
-        type="submit"
-        disabled={status === "loading"}
-        style={{
-          width: "100%",
-          padding: "0.75rem",
-          borderRadius: "8px",
-          border: "none",
-          background: "var(--color-pblue)",
-          color: "#fff",
-          fontWeight: 600,
-          cursor: status === "loading" ? "not-allowed" : "pointer",
-        }}
-      >
-        {status === "loading" ? "Enviando…" : "Activar mi regalo"}
-      </button>
+        <div className="field">
+          <label className="field__label" htmlFor="email">
+            Correo electrónico
+          </label>
+          <input
+            className="field__input"
+            id="email"
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            inputMode="email"
+            placeholder="tu@correo.com"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            disabled={status === "loading"}
+            aria-invalid={status === "error"}
+            aria-describedby={status === "error" ? "email-error" : undefined}
+          />
+        </div>
 
-      {status === "error" && (
-        <p role="alert" style={{ color: "#b00020", marginTop: "0.75rem" }}>
-          {errorMessage}
+        <button
+          className="btn"
+          type="submit"
+          disabled={status === "loading"}
+          onPointerMove={trackPointer}
+        >
+          {status === "loading" ? "Enviando…" : "Activar mi regalo"}
+        </button>
+
+        {status === "error" && (
+          <p className="form__error" id="email-error" role="alert">
+            {errorMessage}
+          </p>
+        )}
+
+        <p className="form__fine">
+          Solo usamos tu correo para activar la suscripción y enviarte la revista.
         </p>
-      )}
-    </form>
+      </form>
+    </>
   );
 }

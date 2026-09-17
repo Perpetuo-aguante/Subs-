@@ -6,6 +6,27 @@ gifted Perpetuo subscription. They enter their email, the form POSTs to
 Tomás activates the subscription manually from there — this repo does not store
 signups or send any confirmation email.
 
+### Design
+
+All brand tokens — the blue taken from the wordmark, the paper and ink tones,
+type and spacing — live in the `:root` block at the top of `src/app/globals.css`.
+Retheming the page means editing that block; nothing downstream hardcodes a
+color. `--font-display` is split out from `--font-body` so a display face can be
+dropped in for headlines without touching the rest.
+
+The page is deliberately not static:
+
+| Piece | File |
+| --- | --- |
+| Drifting ink-wash backdrop (canvas, pauses when the tab is hidden) | `src/app/InkCanvas.tsx` |
+| Scroll-into-view reveals | `src/app/Reveal.tsx` |
+| Cycling word in the hero | `src/app/WordRotator.tsx` |
+| Reading-progress hairline | `src/app/ScrollProgress.tsx` |
+| Wordmark, inlined so it inherits `currentColor` | `src/app/Wordmark.tsx` |
+
+Every animation has a `prefers-reduced-motion` path that keeps the finished
+state and drops the movement; the canvas renders a single static frame.
+
 ### Env var
 
 Set `GIFT_WEBHOOK_URL` (see `.env.example`) to the n8n webhook URL, both locally
