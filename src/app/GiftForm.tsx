@@ -39,13 +39,6 @@ export function GiftForm({ initialEmail }: { initialEmail: string }) {
     }
   }
 
-  /** Feeds the pointer position to the button's sheen gradient. */
-  function trackPointer(event: React.PointerEvent<HTMLButtonElement>) {
-    const rect = event.currentTarget.getBoundingClientRect();
-    event.currentTarget.style.setProperty("--mx", `${event.clientX - rect.left}px`);
-    event.currentTarget.style.setProperty("--my", `${event.clientY - rect.top}px`);
-  }
-
   if (status === "success") {
     return (
       <div className="done" role="status">
@@ -54,70 +47,51 @@ export function GiftForm({ initialEmail }: { initialEmail: string }) {
             <path d="M4 12.5 9.5 18 20 7" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </span>
-        <h2 className="signup__title done__title">Listo, recibimos tu correo.</h2>
         <p className="done__text">
-          Activamos tu suscripción y te avisamos a <strong>{email}</strong>. Nos vemos en el
-          próximo envío.
+          <strong className="done__title">Listo, recibimos tu correo.</strong> Activamos tu
+          suscripción y te avisamos a <strong>{email}</strong>.
         </p>
       </div>
     );
   }
 
   return (
-    <>
-      <p className="eyebrow">Tu regalo</p>
-      <h2 className="signup__title">Activa tu suscripción</h2>
-      <p className="signup__note">
-        Deja el correo donde quieres recibir Perpetuo. Activamos la suscripción a mano y te
-        avisamos ahí mismo.
-      </p>
+    <form className="form" onSubmit={handleSubmit} noValidate>
+      <div className="hp" aria-hidden="true">
+        <label htmlFor="website">Sitio web</label>
+        <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" />
+      </div>
 
-      <form className="form" onSubmit={handleSubmit} noValidate>
-        <div className="hp" aria-hidden="true">
-          <label htmlFor="website">Sitio web</label>
-          <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" />
-        </div>
-
-        <div className="field">
-          <label className="field__label" htmlFor="email">
-            Correo electrónico
-          </label>
-          <input
-            className="field__input"
-            id="email"
-            name="email"
-            type="email"
-            required
-            autoComplete="email"
-            inputMode="email"
-            placeholder="tu@correo.com"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            disabled={status === "loading"}
-            aria-invalid={status === "error"}
-            aria-describedby={status === "error" ? "email-error" : undefined}
-          />
-        </div>
-
-        <button
-          className="btn"
-          type="submit"
+      <label className="sr-only" htmlFor="email">
+        Correo electrónico
+      </label>
+      <div className="field">
+        <input
+          className="field__input"
+          id="email"
+          name="email"
+          type="email"
+          required
+          autoComplete="email"
+          inputMode="email"
+          placeholder="tu@correo.com"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
           disabled={status === "loading"}
-          onPointerMove={trackPointer}
-        >
+          aria-invalid={status === "error"}
+          aria-describedby={status === "error" ? "email-error" : undefined}
+        />
+
+        <button className="btn" type="submit" disabled={status === "loading"}>
           {status === "loading" ? "Enviando…" : "Activar mi regalo"}
         </button>
+      </div>
 
-        {status === "error" && (
-          <p className="form__error" id="email-error" role="alert">
-            {errorMessage}
-          </p>
-        )}
-
-        <p className="form__fine">
-          Solo usamos tu correo para activar la suscripción y enviarte la revista.
+      {status === "error" && (
+        <p className="form__error" id="email-error" role="alert">
+          {errorMessage}
         </p>
-      </form>
-    </>
+      )}
+    </form>
   );
 }
