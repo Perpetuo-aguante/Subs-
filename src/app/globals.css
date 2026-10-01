@@ -125,33 +125,6 @@ p {
 }
 
 /* ==========================================================================
-   Wordmark — PERPETUO with the punto perched on the T
-   ========================================================================== */
-
-.wordmark {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-}
-
-.wordmark__t {
-  position: relative;
-  display: inline-block;
-}
-
-.wordmark__punto {
-  position: absolute;
-  left: 50%;
-  bottom: 58%;
-  width: 0.62em;
-  transform: translateX(-46%);
-  color: var(--blue);
-}
-
-/* ==========================================================================
    Hero — the whole page
    ========================================================================== */
 
@@ -165,9 +138,10 @@ p {
 }
 
 .hero__mark {
-  /* Leaves headroom for the punto sitting on the T. */
-  margin-top: 0.55em;
-  font-size: clamp(2rem, 5vw, 3rem);
+  display: block;
+  width: clamp(10rem, 24vw, 15rem);
+  height: auto;
+  color: var(--ink);
   opacity: 0;
   animation: rise-in 0.8s var(--ease) 0.1s forwards;
 }
@@ -208,8 +182,8 @@ p {
 /* The headline's full stop is the brand book's punto. */
 .hero__punto {
   display: inline-block;
-  width: 0.32em;
-  margin-left: 0.05em;
+  width: 0.58em;
+  margin-left: 0.04em;
   vertical-align: baseline;
   color: var(--ink);
 }

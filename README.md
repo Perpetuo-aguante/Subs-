@@ -18,13 +18,13 @@ the top of `src/app/globals.css`; nothing downstream hardcodes a colour.
 
 | Piece | File |
 | --- | --- |
-| PERPETUO logotype with the punto on the T (live text in Archivo 900) | `src/app/Wordmark.tsx` |
+| PERPETUO logotype, traced from the brand book artwork | `src/app/Wordmark.tsx` |
 | The punto mascot, also used as the headline's full stop and the favicon | `src/app/Punto.tsx`, `public/punto.svg` |
 | Cycling word in "Cada semana, …" | `src/app/WordRotator.tsx` |
 | Email form | `src/app/GiftForm.tsx` |
 
-The logotype and punto are approximations drawn in code; swap in the official
-SVGs from the brand book when they're available. Every animation has a
+The logotype and punto are vector traces of the official PNG/WebP artwork. If
+the studio's original SVGs turn up, drop their paths into those two files. Every animation has a
 `prefers-reduced-motion` path that keeps the finished state.
 
 ### Env var
