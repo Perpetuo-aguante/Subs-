@@ -22,21 +22,22 @@ export function WordRotator({ words }: { words: string[] }) {
   const previous = (index - 1 + words.length) % words.length;
 
   return (
-    <span className="rotator">
+    <>
       {/* The live word is announced once; the animated siblings stay silent. */}
-      <span className="hp" aria-live="polite">
+      <span className="sr-only" aria-live="polite">
         {words[index]}
       </span>
-      {words.map((word, i) => (
-        <span
-          key={word}
-          className="rotator__item"
-          aria-hidden="true"
-          data-state={i === index ? "current" : i === previous ? "leaving" : "waiting"}
-        >
-          {word}
-        </span>
-      ))}
-    </span>
+      <span className="rotator" aria-hidden="true">
+        {words.map((word, i) => (
+          <span
+            key={word}
+            className="rotator__item"
+            data-state={i === index ? "current" : i === previous ? "leaving" : "waiting"}
+          >
+            {word}
+          </span>
+        ))}
+      </span>
+    </>
   );
 }

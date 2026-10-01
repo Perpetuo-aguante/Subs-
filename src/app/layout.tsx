@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins } from "next/font/google";
+import { Archivo } from "next/font/google";
 
 import "./globals.css";
 
-const poppins = Poppins({
+// Variable font: one file covers the 400 body and the 900 display weight.
+const archivo = Archivo({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-poppins",
+  variable: "--font-archivo",
   display: "swap",
 });
 
@@ -21,18 +21,16 @@ export const metadata: Metadata = {
     locale: "es_ES",
     type: "website",
   },
-  icons: { icon: "/logo.svg" },
+  icons: { icon: "/punto.svg" },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f9f6f1",
+  themeColor: "#faf6f1",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es" className={poppins.variable}>
+    <html lang="es" className={archivo.variable}>
       <body>{children}</body>
     </html>
   );

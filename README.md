@@ -8,24 +8,24 @@ signups or send any confirmation email.
 
 ### Design
 
-All brand tokens — the blue taken from the wordmark, the paper and ink tones,
-type and spacing — live in the `:root` block at the top of `src/app/globals.css`.
-Retheming the page means editing that block; nothing downstream hardcodes a
-color. `--font-display` is split out from `--font-body` so a display face can be
-dropped in for headlines without touching the rest.
+One screen, nothing else: logotype, headline, a line of copy, the "Cada semana"
+rotator and the email field. Keep it that way — no extra sections.
 
-The page is deliberately not static:
+The look follows the 2026 brand book (Materia Prima Estudio). Its five colours
+(A1 blue `#074690`, A2 red `#e2543b`, A3 lime `#c3d73a`, A4 ink `#0d1114`,
+A5 paper `#faf6f1`) and the type and spacing tokens live in the `:root` block at
+the top of `src/app/globals.css`; nothing downstream hardcodes a colour.
 
 | Piece | File |
 | --- | --- |
-| Drifting ink-wash backdrop (canvas, pauses when the tab is hidden) | `src/app/InkCanvas.tsx` |
-| Scroll-into-view reveals | `src/app/Reveal.tsx` |
-| Cycling word in the hero | `src/app/WordRotator.tsx` |
-| Reading-progress hairline | `src/app/ScrollProgress.tsx` |
-| Wordmark, inlined so it inherits `currentColor` | `src/app/Wordmark.tsx` |
+| PERPETUO logotype with the punto on the T (live text in Archivo 900) | `src/app/Wordmark.tsx` |
+| The punto mascot, also used as the headline's full stop and the favicon | `src/app/Punto.tsx`, `public/punto.svg` |
+| Cycling word in "Cada semana, …" | `src/app/WordRotator.tsx` |
+| Email form | `src/app/GiftForm.tsx` |
 
-Every animation has a `prefers-reduced-motion` path that keeps the finished
-state and drops the movement; the canvas renders a single static frame.
+The logotype and punto are approximations drawn in code; swap in the official
+SVGs from the brand book when they're available. Every animation has a
+`prefers-reduced-motion` path that keeps the finished state.
 
 ### Env var
 
